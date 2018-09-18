@@ -5,6 +5,8 @@
             [hiccups.runtime :as hiccupsrt]
             [reveal.slides :as slides]))
 
+(defn load-hljs []
+  (.initHighlightingOnLoad js/hljs))
 
 ;; When changing comments, you manually need to refresh your browser
 (def options (clj->js {:controls    true
@@ -12,8 +14,10 @@
                        :transition  "fade"                    ; e.g. none/fade/slide/convex/concave/zoom
                        :slideNumber false
                        :dependencies  [{:src "bower_components/reveal.js/plugin/notes/notes.js"
-                                        :async true}]}))
-
+                                        :async true}
+                                       {:src "bower_components/reveal.js/plugin/highlight/highlight.js"
+                                        :async true
+                                        :callback load-hljs}]}))
 
 ;;;; You do not need to change anything below this comment
 
@@ -32,4 +36,7 @@
 (main)
 
 (defn on-js-reload []
-  (main))
+  (main)
+  ;;rehilight everything and add line numbers
+  (.forEach (.querySelectorAll js/document "pre code")
+            #(do (.highlightBlock js/hljs %))))
