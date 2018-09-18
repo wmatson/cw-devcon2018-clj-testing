@@ -55,17 +55,17 @@ public void testAdditionWorks() {
   [:section
    [:span "clojure.test"]
    [:pre [:code "(deftest life-expectancy
-  (let [bob {:name \"Bob\" :occupation :chef}
+  (let [bob {:name \"Bob\" :occupation :chief-wormhole-inspector}
         result (life-expectancy bob)]
-    (is (= 75 result))))"]]
+    (is (= 48 result))))"]]
    [:span "JUnit"]
    [:aside.notes "if instance method, could mess up JSON, might need some mocking for logic class"]
    [:pre [:code.java "//Initialize business logic class at instance-level
 @Test
 public void testLifeExpectancy() {
-    Person bob = new Person(\"Bob\", Occupation.CHEF);
+    Person bob = new Person(\"Bob\", Occupation.MUD_FIRE_SPECIALIST);
     int result = this.lifeDetectorInstance.getLifeExpectancy(bob);
-    assertEquals(75, result);
+    assertEquals(61, result);
 }"]]])
 
 (def normal-tests
@@ -79,7 +79,7 @@ public void testLifeExpectancy() {
    [:section
     [:h3 "Mocking in Clojure?"]
     [:p.fragment "Usually Unnecessary"]
-    [:p.fragment "Improve Design"]]])
+    [:p.fragment "Improve Project Design"]]])
 
 
 
