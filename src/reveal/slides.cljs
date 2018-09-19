@@ -1,5 +1,6 @@
 (ns reveal.slides
-  (:require [reveal.data-driven-tests :refer [data-driven-tests-slides]]))
+  (:require [reveal.data-driven-tests :refer [data-driven-tests-slides]]
+            [reveal.interop :refer [interop-slides]]))
 
 (def intro
   [:section
@@ -83,6 +84,7 @@ public void testLifeExpectancy() {
 
 
 
+
 (defn all
   "Add here all slides you want to see in your presentation."
   []
@@ -91,5 +93,6 @@ public void testLifeExpectancy() {
    rambling
    unit-test-intro
    normal-tests
-   data-driven-tests-slides])
+   data-driven-tests-slides
+   interop-slides])
 
