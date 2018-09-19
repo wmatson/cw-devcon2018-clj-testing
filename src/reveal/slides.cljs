@@ -40,8 +40,9 @@
    [:pre [:code "(deftest addition-works
   (is (= 2 (+ 1 1)))  ;; pass
   (is (= 2 (+ 1 2)))  ;; reported failure
-  (is (= 5 (+ 2 3)))  ;; pass, still executed
-  (is (= 2 (+ 1 5)))) ;; reported failure"]]
+  (testing \"Stuff after failure\"
+    (is (= 5 (+ 2 3)))  ;; pass, still executed
+    (is (= 2 (+ 1 5))))) ;; reported failure"]]
    [:span "JUnit"]
    [:pre [:code.java "//Some stuff to put it into a class
 
@@ -82,9 +83,6 @@ public void testLifeExpectancy() {
     [:h3 "Mocking in Clojure?"]
     [:p.fragment "Usually Unnecessary"]
     [:p.fragment "Improve Project Design"]]])
-
-
-
 
 (defn all
   "Add here all slides you want to see in your presentation."
