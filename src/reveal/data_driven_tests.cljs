@@ -1,7 +1,7 @@
 (ns reveal.data-driven-tests)
 
 (defn detab [s]
-  (clojure.string/replace s #"\n    " "\n"))
+  (clojure.string/trim (clojure.string/replace s #"\n    " "\n")))
 
 (def clojure-are-example
   [:section
@@ -27,8 +27,8 @@
 @RunWith(Parameterized.class)
 public class FancyTest {")
 
-(def parameterization
-  "    @Parameterized.Parameters(name = 
+(def parameterization  "
+    @Parameterized.Parameters(name = 
      \"Battle with {0} sheep, {1} wolves, expected winner: {2}\")
     public static Iterable&lt;Object[]&gt; data() {
         return Arrays.asList(new Object[][] {
@@ -36,8 +36,8 @@ public class FancyTest {")
             {100, 1, AnimalType.WOLF},
             {1, 0, AnimalType.SHEEP},
             {0, 1, AnimalType.WOLF},
-  //Test elsewhere, not simple with this way of running tests
-  //            {0, 0, EXCEPTION},
+    //Test elsewhere, not simple with this way of running tests
+    //            {0, 0, EXCEPTION},
             {9001, 1, AnimalType.SHEEP},
             //luckily, trailing commas are allowed
         }
@@ -83,7 +83,6 @@ public class FancyTest {")
    [:code.java 
     (str class-declaration "
     private BattleManager battleManager;
-
 "
          parameterization
          vars-and-ctor "
@@ -104,7 +103,7 @@ public class FancyTest {")
     [:mini "Heavy inspiration from " [:a {:href "https://automationrhapsody.com/data-driven-testing-junit-parameterized-tests/"} "https://automationrhapsody.com/data-driven-testing-junit-parameterized-tests/"]]]
    [:section
     [:p "Parameterization"]
-    [:pre [:code.java parameterization]]]
+    [:pre [:code.java (detab parameterization)]]]
    [:section
     [:p "Fancy Runner class"]
     [:pre [:code.java class-declaration]]
@@ -112,7 +111,7 @@ public class FancyTest {")
      [:code.java (str "//..." (detab vars-and-ctor))]]]
    [:section
     [:p "Actual Test Code"]
-    [:pre.stretch [:code.java (clojure.string/trim (detab actual-test))]]]
+    [:pre.stretch [:code.java (detab actual-test)]]]
    [:section all-together]
    [:section
     [:p "clojure.test + interop"]

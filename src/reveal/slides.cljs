@@ -12,10 +12,11 @@
   [:section
    [:h2 "Agenda"]
    [:section
-    [:p "Rambling about Clojure"]
-    [:p "Unit Testing"]
-    [:p "Testing Java"]
-    [:p "Interesting Libraries"]]])
+    [:ul
+     [:li "Rambling about Clojure"]
+     [:li "Unit Testing"]
+     [:li "Testing Java"]
+     [:li "Interesting Libraries"]]]])
 
 (def rambling
   [:section

@@ -45,20 +45,20 @@
             <middleware>cider.nrepl.middleware.apropos/wrap-apropos</middleware>
             <middleware>cider.nrepl.middleware.classpath/wrap-classpath</middleware>
             <middleware>cider.nrepl.middleware.complete/wrap-complete</middleware>
-           <middleware>cider.nrepl.middleware.format/wrap-format</middleware>
-              <middleware>cider.nrepl.middleware.info/wrap-info</middleware>
-              <middleware>cider.nrepl.middleware.inspect/wrap-inspect</middleware>
-              <middleware>cider.nrepl.middleware.macroexpand/wrap-macroexpand</middleware>
-              <middleware>cider.nrepl.middleware.ns/wrap-ns</middleware>
-              <middleware>cider.nrepl.middleware.pprint/wrap-pprint</middleware>
-              <middleware>cider.nrepl.middleware.resource/wrap-resource</middleware>
-              <middleware>cider.nrepl.middleware.stacktrace/wrap-stacktrace</middleware>
-              <middleware>cider.nrepl.middleware.test/wrap-test</middleware>
-              <middleware>cider.nrepl.middleware.trace/wrap-trace</middleware>
-              <middleware>cider.nrepl.middleware.undef/wrap-undef</middleware>
-          </nreplMiddlewares>
-          <testSourceDirectories>
-              <testSourceDirectory>src/test/clj</testSourceDirectory>
+            <middleware>cider.nrepl.middleware.format/wrap-format</middleware>
+            <middleware>cider.nrepl.middleware.info/wrap-info</middleware>
+            <middleware>cider.nrepl.middleware.inspect/wrap-inspect</middleware>
+            <middleware>cider.nrepl.middleware.macroexpand/wrap-macroexpand</middleware>
+            <middleware>cider.nrepl.middleware.ns/wrap-ns</middleware>
+            <middleware>cider.nrepl.middleware.pprint/wrap-pprint</middleware>
+            <middleware>cider.nrepl.middleware.resource/wrap-resource</middleware>
+            <middleware>cider.nrepl.middleware.stacktrace/wrap-stacktrace</middleware>
+            <middleware>cider.nrepl.middleware.test/wrap-test</middleware>
+            <middleware>cider.nrepl.middleware.trace/wrap-trace</middleware>
+            <middleware>cider.nrepl.middleware.undef/wrap-undef</middleware>
+        </nreplMiddlewares>
+        <testSourceDirectories>
+            <testSourceDirectory>src/test/clj</testSourceDirectory>
         </testSourceDirectories>
     </configuration>
 </plugin>")
@@ -70,9 +70,20 @@
   
 (def interop-slides
   [:section
-   [:h5 "Using Clojure to Test Java"]
+   [:h5 "Testing Java"]
+   [:section
+    [:h3 "Disclaimer"]
+    [:p.fragment "Not a silver bullet"]
+    [:p.fragment "Need testable design"]]
+   [:section
+    [:h3 "Requirements"]
+    [:ul
+     [:li "Access project's classes"]
+     [:li "Run on build"]
+     [:li "Allow REPL connection"]]]
    [:section
     [:p "Maven Dependencies"]
+    [:aside.notes "Notice the test scope on all these dependencies"]
     [:pre.stretch {:style "font-size: 17.3px"}
      [:code (escape-xml maven-deps-xml)]]]
    [:section
@@ -84,3 +95,4 @@
     [:pre {:style "width: 51.5vw"}
      [:code maven-repl-goal]]
     [:aside.notes "Libraries for auto-reloading of Java stuff, like virgil"]]])
+   
