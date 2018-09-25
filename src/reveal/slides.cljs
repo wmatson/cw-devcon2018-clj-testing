@@ -97,6 +97,12 @@ public void testLifeExpectancy() {
    interop-slides
    libs-slides
    [:section
+    [:h1 "Questions?"]
     [:section
-     [:h1.stretch "Questions?"]]]])
+     [:p "Slides source will be made available here: "
+      [:a {:href "https://github.com/wmatson/cw-devcon2018-clj-testing"
+           :style "font-size: 32px"}
+       "https://github.com/wmatson/cw-devcon2018-clj-testing"]]
+     [:mini {:style "position: fixed; bottom: 10px; left: 415px"}
+      "Created with " [:a {:href "https://github.com/n2o/reveal-cljs"} "reveal-cljs"]]]]])
 
