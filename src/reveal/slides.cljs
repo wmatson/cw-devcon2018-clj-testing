@@ -1,6 +1,7 @@
 (ns reveal.slides
   (:require [reveal.data-driven-tests :refer [data-driven-tests-slides]]
-            [reveal.interop :refer [interop-slides]]))
+            [reveal.interop :refer [interop-slides]]
+            [reveal.libs :refer [libs-slides]]))
 
 (def intro
   [:section
@@ -93,5 +94,9 @@ public void testLifeExpectancy() {
    unit-test-intro
    normal-tests
    data-driven-tests-slides
-   interop-slides])
+   interop-slides
+   libs-slides
+   [:section
+    [:section
+     [:h1.stretch "Questions?"]]]])
 
