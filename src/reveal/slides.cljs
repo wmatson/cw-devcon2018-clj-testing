@@ -1,6 +1,7 @@
 (ns reveal.slides
   (:require [reveal.data-driven-tests :refer [data-driven-tests-slides]]
-            [reveal.interop :refer [interop-slides]]
+            [reveal.interop.setup :refer [interop-slides]]
+            [reveal.interop.usage :refer [interop-usage-slides]]
             [reveal.libs :refer [libs-slides]]))
 
 (def intro
@@ -79,11 +80,11 @@ public void testLifeExpectancy() {
    given-when-then
    [:section
     [:h3 "Mocking in Java?"]
-    [:p.fragment "Perfectly Normal"]]
+    [:p "Perfectly Normal"]]
    [:section
     [:h3 "Mocking in Clojure?"]
-    [:p.fragment "Usually Unnecessary"]
-    [:p.fragment "Improve Project Design"]]])
+    [:p "Usually Unnecessary"]
+    [:p "Improve Project Design"]]])
 
 (defn all
   "Add here all slides you want to see in your presentation."
@@ -95,8 +96,9 @@ public void testLifeExpectancy() {
    normal-tests
    data-driven-tests-slides
    interop-slides
+   interop-usage-slides
    libs-slides
-   [:section
+   [:section {:data-transition "fade"}
     [:h1 "Questions?"]
     [:section
      [:p "Slides source will be made available here: "

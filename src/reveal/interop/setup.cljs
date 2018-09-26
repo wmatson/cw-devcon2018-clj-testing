@@ -1,4 +1,4 @@
-(ns reveal.interop)
+(ns reveal.interop.setup)
 
 (def maven-deps-xml "<dependency>
     <groupId>org.clojure</groupId>
@@ -70,7 +70,7 @@
   
 (def interop-slides
   [:section
-   [:h5 "Testing Java"]
+   [:h5 "Testing Java - Setup"]
    [:section
     [:h3 "Disclaimer"]
     [:p.fragment "Not a silver bullet"]
@@ -94,23 +94,5 @@
     [:p "Maven REPL Command"]
     [:pre {:style "width: 51.5vw"}
      [:code maven-repl-goal]]
-    [:p.fragment "'Normal' interop from here"]
-    [:aside.notes "Libraries for auto-reloading of Java stuff, like virgil"]]
-   [:section
-    [:p "Mocking"]
-    [:ul 
-     [:li.fragment "Redesign"]
-     [:li.fragment [:a {:href "https://clojuredocs.org/clojure.core/reify"}
-                    [:code "reify"]]]
-     [:li.fragment [:a {:href "https://clojuredocs.org/clojure.core/with-redefs"}
-                    [:code "with-redefs"]]]
-     [:li.fragment "Libraries"]]]
-   [:section
-    [:p "Data Management"]
-    [:p "Clojure structures work as Java collections"]
-    [:ul
-     [:li.fragment "Wrapper functions/macros"]
-     [:li.fragment [:a {:href "https://clojuredocs.org/clojure.core/bean"} "clojure.core/bean"]]
-     [:li.fragment [:a {:href "https://github.com/clojure/java.data"} "clojure.java.data"]
-      [:ul [:li "from-java & to-java"]]]
-     [:li.fragment [:a {:href "https://github.com/uwcpdx/bean-dip"} "bean-dip"]]]]])
+    [:p "'Normal' interop from here"]
+    [:aside.notes "Libraries for auto-reloading of Java stuff, like virgil"]]])

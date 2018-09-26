@@ -49,7 +49,7 @@ public class FancyTest {")
     private final int numWolves;
     private final AnimalType expectedWinnerType;
 
-    public FancyTest(int numSheep int numWolves, AnimalType expectedWinnerType) {
+    public FancyTest(int numSheep, int numWolves, AnimalType expectedWinnerType) {
         this.numSheep = numSheep;
         this.numWolves = numWolves;
         this.expectedWinner = expectedWinnerType;
@@ -67,6 +67,11 @@ public class FancyTest {")
         battleManager = new BattleManager(mocked);
     }
 ")
+
+(def clj-mock "
+(def mocked-service (reify SomeService
+                      (getBattleFieldConditions [] [BattlefieldCondition/DAY])
+                      (getDistance [_ _] 100)))")
 
 (def actual-test "
     public void testBattleResults() {
@@ -115,8 +120,8 @@ public class FancyTest {")
    [:section
     [:p "Fancy Runner class"]
     [:pre [:code.java class-declaration]]
-    [:pre {:style "width: 52vw"}
-     [:code.java (str "//..." (detab vars-and-ctor))]]]
+    [:pre {:style "width: 1003px"}
+     [:code.java (detab vars-and-ctor)]]]
    [:section
     [:p "Actual Test Code"]
     [:pre.stretch [:code.java (detab actual-test)]]]
@@ -127,10 +132,9 @@ public class FancyTest {")
     [:aside.notes "sequences can be used as java.util.Lists"]
     [:pre.stretch {:style "font-size: 18px"}
      [:code "(import '[com.example.battle BattleManager SomeService AnimalType Animal])
-
-(def mocked-service (reify SomeService
-                      (getBattleFieldConditions [] [BattlefieldCondition/DAY])
-                      (getDistance [_ _] 100)))
+"
+      clj-mock
+      "
 
 (def battle-manager (BattleManager. mocked-service))
 
