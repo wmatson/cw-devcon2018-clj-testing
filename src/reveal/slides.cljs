@@ -50,7 +50,7 @@
 @Test
 public void testAdditionWorks() {
     assertEquals(2, 1 + 1); //passes
-    assertEquals(2, 1 + 1); //fails here
+    assertEquals(2, 1 + 2); //fails here
     assertEquals(5, 2 + 3); //never executed
     assertEquals(2, 1 + 5); //should fail, never executed
 }"]]])
@@ -59,15 +59,15 @@ public void testAdditionWorks() {
   [:section
    [:span "clojure.test"]
    [:pre [:code "(deftest life-expectancy
-  (let [bob {:name \"Bob\" :occupation :chief-wormhole-inspector}
-        result (life-expectancy bob)]
+  (let [alice {:name \"Alice\" :occupation :chief-wormhole-inspector}
+        result (life-expectancy alice)]
     (is (= 48 result))))"]]
    [:span "JUnit"]
    [:aside.notes "if instance method, could mess up JSON, might need some mocking for logic class"]
    [:pre [:code.java "//Initialize business logic class at instance-level
 @Test
 public void testLifeExpectancy() {
-    Person bob = new Person(\"Bob\", Occupation.MUD_FIRE_SPECIALIST);
+    Person bob = new Person(\"bob\", Occupation.MUD_FIRE_SPECIALIST);
     int result = this.lifeDetectorInstance.getLifeExpectancy(bob);
     assertEquals(61, result);
 }"]]])

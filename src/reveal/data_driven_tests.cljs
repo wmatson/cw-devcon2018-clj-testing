@@ -56,6 +56,18 @@ public class FancyTest {")
     }
 ")
 
+(def mocking "
+    @Before
+    public void setUp() {
+        SomeService mocked = mock(SomeService.class);
+        List<BattlefieldCondition> conditions = new ArrayList<>();
+        conditions.add(BattlefieldCondition.DAY);
+        when(mocked.getBattlefieldConditions()).thenReturn(conditions);
+        when(mocked.getDistance(any(Location.class), any(Location.class))).thenReturn(100);
+        battleManager = new BattleManager(mocked);
+    }
+")
+
 (def actual-test "
     public void testBattleResults() {
         List&lt;Animal> sheep = new ArrayList<>();
@@ -79,18 +91,14 @@ public class FancyTest {")
 ")
 
 (def all-together
-  [:pre.stretch {:style "font-size: 9.6px"}
+  [:pre.stretch {:style "font-size: 8.3px"}
    [:code.java 
     (str class-declaration "
     private BattleManager battleManager;
 "
          parameterization
-         vars-and-ctor "
-    @Before
-    public void setUp() {
-        battleManager = new BattleManager(mock(SomeService.class));
-    }
-"
+         vars-and-ctor
+         mocking
          actual-test "
 }")]])
 
@@ -117,10 +125,13 @@ public class FancyTest {")
     [:p "clojure.test + interop"]
     [:aside.notes "there are mock libraries that can do the reify line"]
     [:aside.notes "sequences can be used as java.util.Lists"]
-    [:pre.stretch {:style "font-size: 22px"}
+    [:pre.stretch {:style "font-size: 18px"}
      [:code "(import '[com.example.battle BattleManager SomeService AnimalType Animal])
 
-(def mocked-service (reify SomeService ...))
+(def mocked-service (reify SomeService
+                      (getBattleFieldConditions [] [BattlefieldCondition/DAY])
+                      (getDistance [_ _] 100)))
+
 (def battle-manager (BattleManager. mocked-service))
 
 (defn animal-list [n animal-type]
