@@ -84,7 +84,10 @@ public void testLifeExpectancy() {
    [:section
     [:h3 "Mocking in Clojure?"]
     [:p "Usually Unnecessary"]
-    [:p "Improve Project Design"]]])
+    [:p "Improve Project Design"]
+    [:p.fragment
+     [:a {:href "https://clojuredocs.org/clojure.core/with-redefs"}
+      [:code "with-redefs"]]]]])
 
 (defn all
   "Add here all slides you want to see in your presentation."

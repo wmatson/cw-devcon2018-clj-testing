@@ -36,8 +36,6 @@ public class FancyTest {")
             {100, 1, AnimalType.WOLF},
             {1, 0, AnimalType.SHEEP},
             {0, 1, AnimalType.WOLF},
-    //Test elsewhere, not simple with this way of running tests
-    //            {0, 0, EXCEPTION},
             {9001, 1, AnimalType.SHEEP},
             //luckily, trailing commas are allowed
         }
@@ -60,18 +58,15 @@ public class FancyTest {")
     @Before
     public void setUp() {
         SomeService mocked = mock(SomeService.class);
-        List<BattlefieldCondition> conditions = new ArrayList<>();
+        List&lt;BattlefieldCondition&gt; conditions = new ArrayList<>();
         conditions.add(BattlefieldCondition.DAY);
         when(mocked.getBattlefieldConditions()).thenReturn(conditions);
-        when(mocked.getDistance(any(Location.class), any(Location.class))).thenReturn(100);
+        when(mocked.getDistance(any(Location.class),
+                                any(Location.class)))
+            .thenReturn(100);
         battleManager = new BattleManager(mocked);
     }
 ")
-
-(def clj-mock "
-(def mocked-service (reify SomeService
-                      (getBattleFieldConditions [] [BattlefieldCondition/DAY])
-                      (getDistance [_ _] 100)))")
 
 (def actual-test "
     public void testBattleResults() {
@@ -79,12 +74,12 @@ public class FancyTest {")
         for(int i = 0; i < numSheep; i++) {
             sheep.add(Animal.ofType(AnimalType.SHEEP));
         }
-
+  
         List&lt;Animal> wolves = new ArrayList<>();
         for(int i = 0; i < numWolves; i++) {
             wolves.add(Animal.ofType(AnimalType.WOLF));
         }
-
+  
         List&lt;Animal> battleRoyale = new ArrayList<>();
         battleRoyale.addAll(sheep);
         battleRoyale.addAll(wolves);
@@ -96,7 +91,7 @@ public class FancyTest {")
 ")
 
 (def all-together
-  [:pre.stretch {:style "font-size: 8.3px"}
+  [:pre.stretch {:style "font-size: 8.4px"}
    [:code.java 
     (str class-declaration "
     private BattleManager battleManager;
@@ -106,6 +101,36 @@ public class FancyTest {")
          mocking
          actual-test "
 }")]])
+
+(def clj-mock "
+(def mocked-service 
+  (reify SomeService
+    (getBattleFieldConditions [this] [BattlefieldCondition/DAY])
+    (getDistance [this _ _] 100)))")
+
+(def clj-all-together
+  (str "(import '[com.example.battle BattleManager SomeService AnimalType Animal])
+  "
+       clj-mock
+       "
+
+(def battle-manager (BattleManager. mocked-service))
+
+(defn animal-list [n animal-type]
+  (repeatedly n #(Animal/ofType animal-type)))
+
+(deftest test-battle-results
+  (are [num-sheep num-wolves expected-winner-type]
+      (let [sheep (animal-list num-sheep AnimalType/SHEEP)
+            wolves (animal-list num-wolves AnimalType/WOLF)
+            battle-royale (concat sheep wolves)
+            winner (.fight battle-manager battle-royale)]
+        (= expected-winner-type (.getType winner)))
+    10   1 AnimalType/WOLF
+    100  1 AnimalType/WOLF
+    1    0 AnimalType/SHEEP
+    0    1 AnimalType/WOLF
+    9001 1 AnimalType/SHEEP))"))
 
 (def data-driven-tests-slides
   [:section
@@ -123,6 +148,10 @@ public class FancyTest {")
     [:pre {:style "width: 1003px"}
      [:code.java (detab vars-and-ctor)]]]
    [:section
+    [:p "Mock a little"
+     [:pre {:style "width: 1003px"}
+      [:code.java (detab mocking)]]]]
+   [:section
     [:p "Actual Test Code"]
     [:pre.stretch [:code.java (detab actual-test)]]]
    [:section all-together]
@@ -131,25 +160,4 @@ public class FancyTest {")
     [:aside.notes "there are mock libraries that can do the reify line"]
     [:aside.notes "sequences can be used as java.util.Lists"]
     [:pre.stretch {:style "font-size: 18px"}
-     [:code "(import '[com.example.battle BattleManager SomeService AnimalType Animal])
-"
-      clj-mock
-      "
-
-(def battle-manager (BattleManager. mocked-service))
-
-(defn animal-list [n animal-type]
-  (repeatedly n (Animal/ofType animal-type)))
-
-(deftest test-battle-results
-  (are [num-sheep num-wolves expected-winner-type]
-      (let [sheep (animal-list num-sheep AnimalType/SHEEP)
-            wolves (animal-list num-wolves AnimalType/WOLF)
-            battle-royale (concat sheep wolves)
-            winner (.fight battle-manager battle-royale)]
-        (= expected-winner-type (.getType winner)))
-    10   1 AnimalType/WOLF
-    100  1 AnimalType/WOLF
-    1    0 AnimalType/SHEEP
-    0    1 AnimalType/WOLF
-    9001 1 AnimalType/SHEEP))"]]]])
+     [:code clj-all-together]]]])
