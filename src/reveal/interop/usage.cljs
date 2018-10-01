@@ -18,8 +18,7 @@
     [:ul
      [:li "Wrapper functions/macros"]
      [:li [:a {:href "https://clojuredocs.org/clojure.core/bean"} "clojure.core/bean"]]
-     [:li [:a {:href "https://github.com/clojure/java.data"} "clojure.java.data"]
-      [:ul [:li "from-java & to-java"]]]
+     [:li [:a {:href "https://github.com/clojure/java.data"} "clojure.java.data"]]
      [:li [:a {:href "https://github.com/uwcpdx/bean-dip"} "bean-dip"]]]
     [:pre {:style "font-size: 16px"}
      [:code "(import '[strangely.easy.pkg Soup Veggie])
