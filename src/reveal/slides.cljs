@@ -2,6 +2,7 @@
   (:require [reveal.data-driven-tests :refer [data-driven-tests-slides]]
             [reveal.interop.setup :refer [interop-slides]]
             [reveal.interop.usage :refer [interop-usage-slides]]
+            [reveal.generative-testing :refer [gen-test-slides]]
             [reveal.libs :refer [libs-slides]]))
 
 (def intro
@@ -100,6 +101,7 @@ public void testLifeExpectancy() {
    data-driven-tests-slides
    interop-slides
    interop-usage-slides
+   gen-test-slides
    libs-slides
    [:section {:data-transition "fade"}
     [:h1 "Questions?"]

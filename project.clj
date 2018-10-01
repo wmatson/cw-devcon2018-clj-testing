@@ -60,8 +60,10 @@
   ;; Please see:
   ;; https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl
 
-  :profiles {:dev {:dependencies [[binaryage/devtools "0.9.4"]
+  :profiles {:test {:dependencies [[org.clojure/test.check "0.9.0"]]}
+             :dev {:dependencies [[binaryage/devtools "0.9.4"]
                                   [figwheel-sidecar "0.5.13"]
+                                  [org.clojure/test.check "0.9.0"]
                                   [com.cemerick/piggieback "0.2.2"]]
                    ;; need to add dev source path here to get user.clj loaded
                    :source-paths ["src" "dev"]

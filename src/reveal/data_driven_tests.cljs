@@ -1,4 +1,5 @@
-(ns reveal.data-driven-tests)
+(ns reveal.data-driven-tests
+  (:require [clojure.string]))
 
 (defn detab [s]
   (clojure.string/trim (clojure.string/replace s #"\n    " "\n")))
