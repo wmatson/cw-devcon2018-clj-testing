@@ -4,7 +4,8 @@
              [clojure.spec.test.alpha :as spec-test]
              [clojure.test.check :as tc]
              [clojure.test.check.generators :as gen]
-             [clojure.test.check.properties :as prop]))
+             [clojure.test.check.properties :as prop]
+             [clojure.test.check.clojure-test :refer [defspec]]))
 
 (spec/def ::name string?)
 
@@ -28,3 +29,19 @@
 ;; (spec-test/check `add-item)
 
 ;; (spec-test/check)
+
+
+(defn cart-total [items]
+  (apply + (map :cost items)))
+
+(defspec undiscounted-cart-total 100
+  (prop/for-all
+   [costs (gen/vector gen/double)]
+   (let [items (map #(hash-map :cost %) costs)]
+     (= (cart-total items) (apply + costs)))))
+
+(defspec ops-return-shopping-cart 100
+  (prop/for-all
+   [item (spec/gen ::item)
+    cart (spec/gen ::shopping-cart)]
+   (spec/valid? ::shopping-cart (add-item cart item))))
