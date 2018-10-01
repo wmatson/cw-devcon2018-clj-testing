@@ -69,7 +69,7 @@ public void testAdditionWorks() {
    [:pre [:code.java "//Initialize business logic class at instance-level
 @Test
 public void testLifeExpectancy() {
-    Person bob = new Person(\"bob\", Occupation.MUD_FIRE_SPECIALIST);
+    Person bob = new Person(\"Bob\", Occupation.MUD_FIRE_SPECIALIST);
     int result = this.lifeDetectorInstance.getLifeExpectancy(bob);
     assertEquals(61, result);
 }"]]])

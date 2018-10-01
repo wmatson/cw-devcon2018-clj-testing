@@ -18,16 +18,20 @@
     [:ul
      [:li "Wrapper functions/macros"]
      [:li [:a {:href "https://clojuredocs.org/clojure.core/bean"} "clojure.core/bean"]]
-     [:li [:a {:href "https://github.com/clojure/java.data"} "clojure.java.data"]]
-     [:li [:a {:href "https://github.com/uwcpdx/bean-dip"} "bean-dip"]]]
+     [:li [:a {:href "https://github.com/uwcpdx/bean-dip"} "bean-dip"]]]]
+   [:section
+    [:p [:a {:href "https://github.com/clojure/java.data"} "clojure.java.data"]]
     [:pre {:style "font-size: 16px"}
-     [:code "(import '[strangely.easy.pkg Soup Veggie])
+     [:code "(import '[strangely.easy.pkg Soup Veggie Meat])
 (require '[clojure.java.data :refer [to-java]])
+
+(defn ->Veg [datum]
+  (to-java Veggie datum))
 
 (deftest soup-ingredients-yummify
   (let [soup (Soup.)]
     (is (= 0 (.getYumminess soup)))
-    (.addVeggies soup (map to-java [{:name \"Potato\" :typeId 3} 
-                                    {:name \"Onion\" :typeId 11}]))
-    (.addMeats soup [(to-java {:cut \"Shoulder\" :animal {:typeId 2 :furColor \"Brown\"}})])
+    (.addVeggies soup (map ->Veg [{:name \"Potato\" :typeId 3} 
+                                  {:name \"Onion\" :typeId 11}]))
+    (.addMeats soup [(to-java Meat {:cut \"Shoulder\" :animal {:typeId 2 :furColor \"Brown\"}})])
     (is (= 27 (.getYumminess soup)))))"]]]])
