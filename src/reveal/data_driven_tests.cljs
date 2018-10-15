@@ -138,7 +138,7 @@ public class FancyTest {")
    [:h5 "Data-Driven Tests"]
    clojure-are-example
    [:section
-    [:h3 "JUnit (Parameterized Tests)"]
+    [:h2 "JUnit 4 Parameterized Tests"]
     [:mini "Heavy inspiration from " [:a {:href "https://automationrhapsody.com/data-driven-testing-junit-parameterized-tests/"} "https://automationrhapsody.com/data-driven-testing-junit-parameterized-tests/"]]]
    [:section
     [:p "Parameterization"]

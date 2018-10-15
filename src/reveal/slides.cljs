@@ -7,9 +7,16 @@
 
 (def intro
   [:section
-   [:h1 "Test Automation in Clojure"]
-   [:h5 "Wesley Matson"]
-   [:p "Clearwater Developer Conference 2018"]])
+   [:section
+    [:h1 "Test Automation in Clojure"]
+    [:h5 "Wesley Matson"]
+    [:p "Clearwater Developer Conference 2018"]]
+   [:section
+    [:h2 "About Me"]
+    [:ul
+     [:li "Started Young"]
+     [:li "Polyglot"]
+     [:li "Other Interests"]]]])
 
 (def agenda
   [:section

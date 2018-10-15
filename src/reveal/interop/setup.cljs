@@ -92,7 +92,7 @@
      [:code.xml (escape-xml maven-plugin-xml)]]]
    [:section
     [:p "Maven REPL Command"]
-    [:pre {:style "width: 51.5vw"}
+    [:pre {:style "width: 45em; font-size: 16px"}
      [:code maven-repl-goal]]
     [:p "'Normal' interop from here"]
     [:aside.notes "Libraries for auto-reloading of Java stuff, like virgil"]]])
