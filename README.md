@@ -6,5 +6,7 @@ As an immutable-by-default, data-first, functional language, Clojure leads natur
 
 Compiled slides can be viewed [here](https://wmatson.github.io/cw-devcon2018-clj-testing/)
 
+Video can be viewed [here](https://youtu.be/d5SruuaDxqQ)
+
 ----
 Created with [reveal-cljs](https://github.com/n2o/reveal-cljs)
